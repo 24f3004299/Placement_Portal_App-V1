@@ -74,7 +74,7 @@ def registration(user):
         return redirect(url_for('company.company',idi=user))
 
 @log.route('/register',methods=['GET','POST'])
-def Crerate():
+def Create():
     if request.method == "GET":
         return render_template('register.html')
     elif request.method == "POST":
@@ -107,3 +107,4 @@ def Crerate():
             database.session.add(candidate)
             database.session.commit()
             return redirect(url_for('log.registration',user=stu))
+
