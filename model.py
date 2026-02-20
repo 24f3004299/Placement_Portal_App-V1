@@ -42,6 +42,8 @@ class Company(database.Model):
     company_id = database.Column(database.Integer, primary_key=True)
     User_id = database.Column(
         database.Integer, database.ForeignKey(User.user_id), unique=False)
+    Name = database.Column(database.String, unique=True)
+    Location = database.Column(database.String, unique=False)
     about = database.Column(database.String, unique=True)
     website = database.Column(database.String, unique=True)
     drives = database.Relationship('Drive', lazy='dynamic', backref='Company', cascade='all,delete-orphan')
@@ -53,9 +55,12 @@ class Drive(database.Model):
     drive_name = database.Column(database.String, unique=True)
     skill= database.Column(
         database.String, unique=False)
-    eligibility = database.Column(database.String, default="pending")
-    experience = database.Column(database.String, default="pending")
-    events = database.Relationship(
+    typeof=database.Column(
+        database.String, unique=False)
+
+    eligibility = database.Column(database.String)
+    experience = database.Column(database.String)
+    application = database.Relationship(
         'Application', lazy='dynamic', backref='Drive', cascade='all,delete-orphan')
     company = database.Column(
         database.Integer, database.ForeignKey(Company.company_id), unique=False)

@@ -52,4 +52,58 @@ def login():
                 else:
                         flash('Wrong password')
                         return render_template('login.html')
-           
+@log.route('/log/out')
+def logout():
+    logout_user()
+    session.clear()
+    print(session)
+    return redirect(url_for('log.login'))
+
+@log.route('/registration/<int:user>', methods=['GET','POST'])
+def registration(user):
+    if request.method=='GET':
+        return render_template('form.html')
+    elif request.method=='POST':
+        c=Company.query.filter_by(User_id=user).first()
+        c.Name=request.form["Company_Name"]
+        c.about=request.form["Company_about"]
+        c.website=request.form["Company_website"]
+        c.contact=request.form["Company_contact"]
+        database.session.add(c)
+        database.session.commit()
+        return redirect(url_for('company.company',idi=user))
+
+@log.route('/register',methods=['GET','POST'])
+def Crerate():
+    if request.method == "GET":
+        return render_template('register.html')
+    elif request.method == "POST":
+        email = request.form["email"]
+        create=request.form["pass"]
+        confirm=request.form["Cpass"]
+        
+        pass_hash = generate_password_hash(request.form["pass"])
+    
+        use = request.form["Type"]
+        print(use)
+        # get userid
+        idi = Role.query.filter_by(role_name=use).first()
+        print(idi)
+        id_new = idi.role_id
+
+        # construct new User
+        user = User(User_email_id=email, user_password=pass_hash, role_id=id_new)
+        database.session.add(user)
+        database.session.commit()
+        stu = user.user_id
+        print(id_new)
+        if id_new == 1:
+            candidate = Student(User_id=stu)
+            database.session.add(candidate)
+            database.session.commit()
+        elif id_new == 2:
+            print('hello')
+            candidate = Company(User_id=stu)
+            database.session.add(candidate)
+            database.session.commit()
+            return redirect(url_for('log.registration',user=stu))

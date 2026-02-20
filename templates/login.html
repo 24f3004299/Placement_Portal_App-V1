@@ -7,6 +7,9 @@
     <script src="static\decorate.js" defer></script>
 </head>
 <body>
+   <div> 
+    <a href={{url_for('log.Create')}}><button> Create Account</button></a>
+   </div>
     <div>
         {% with message = get_flashed_messages() %}
         {% if message %}
@@ -23,6 +26,7 @@
            
             <input type="submit" value="Log In"> 
         </form>
+
         
     </div>
 </body>
