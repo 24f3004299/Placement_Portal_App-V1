@@ -1,6 +1,6 @@
 #from app import app
 from flask import render_template, url_for, request, redirect
-from db import *
+from model import *
 from flask import Blueprint,session
 from flask_login import login_required
 comp=Blueprint('company','__name__')
@@ -11,7 +11,7 @@ comp=Blueprint('company','__name__')
 #@login_required
 def company(idi):
     c=Company.query.filter_by(User_id=idi).first()
-    if c.status="pending":
+    if c.status=="pending":
         return """"<html>
         verification under process! check again later!
         <a href={{url_for('log.logout')}}><button> Log out</button><'/a>
@@ -19,4 +19,5 @@ def company(idi):
         """
     else:
         return render_template("company.html")
+
    
