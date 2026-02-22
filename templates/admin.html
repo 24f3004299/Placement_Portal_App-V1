@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center><input type="search" placeholder="name/contact/id/drive/ user"></center><br>
+    <li>
+        <ul>Total Approved Company {{count_comp}}</ul>
+        <ul>Total Enrolled job seeker {{count_stu}}</ul>
+        <ul>Total Active Drive {{count_comp}}</ul>
+        <button> More Details</button>
+    </li>
+    <hr>
+   <center> <button>Manage Student</button>
+    <button>Manage Company</button>
+    <button>Manage Drive</button>
+    <button>History</button>
+    <button>Analysis/Report</button>
+    <a href={{url_for('log.logout')}}><button>Log out</button></a></center>
+
+
+   
+    
+</body>
+</html>
