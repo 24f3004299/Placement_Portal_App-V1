@@ -101,10 +101,12 @@ def Create():
             candidate = Student(User_id=stu)
             database.session.add(candidate)
             database.session.commit()
+            #git add section
+            return redirect (url_for('student.student',idi=stu))
+            # upto this
         elif id_new == 2:
             print('hello')
             candidate = Company(User_id=stu)
             database.session.add(candidate)
             database.session.commit()
             return redirect(url_for('log.registration',user=stu))
-
