@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post" enctype="multipart/form-data" >
+      <label for="dob">Date of Birth</label>
+      <input type="date" name="dob" id="dob">
+      <label for="cont">Contact Number</label>
+      <input type="tel" name="cont" id="cont" placeholder="+91">
+      <label for="qly">Higher Qualification</label>
+      <select name="qly" id="qly">
+        <option value="Higher-Secondary">Higher Secondary/(12 th)</option>
+        <option value="Ug - pursuing">Undergraduate/(Ug-pursuing)</option>
+        <option value="Diploma">Higher Secondary/(12 th)</option>
+        <option value="Graduate">Graduate</option>
+        <option value="Pg">Pursuing /Completed PG,Masters,Phd/others</option>
+
+      </select>
+      <label for="nation">Nationality</label>
+      <input name="nation" id="nation" type="text" placeholder="Indian">
+      <label for="state">State</label>
+      <input name="state" id="state" type="text">
+      <label for="area">Location:-</label>
+      <input name="area" id="area" type="text">
+      <label for="resume">Upload Resume</label>
+      <input type="file" id="resume" name="resume" placeholder="Upload- gdrive link">
+      <input type="Submit" value="Update">
+    </form>
+    
+</body>
+</html>
