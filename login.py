@@ -43,9 +43,9 @@ def login():
                         print("hit")
                         print(session)
                         return redirect(url_for('admin.admin'))
-                    elif str(user["role"]).upper=="COMPANY":
+                    elif user["role"]=="company":
                         return redirect(url_for('company.company',idi=user["user_label"]))
-                    elif str(user["role"]).upper=="STUDENT":
+                    elif user["role"]=="student":
                         return redirect(url_for('student.student',idi=user["user_label"]))
                 
 
