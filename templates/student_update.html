@@ -6,6 +6,8 @@
     <title>Document</title>
 </head>
 <body>
+    <button> View current details</button>
+    <a href={{url_for('student.student',idi=idi)}}><button>Home</button></a>
     <form method="post" enctype="multipart/form-data" >
       <label for="dob">Date of Birth</label>
       <input type="date" name="dob" id="dob">
@@ -30,6 +32,7 @@
       <input type="file" id="resume" name="resume" placeholder="Upload- gdrive link">
       <input type="Submit" value="Update">
     </form>
+
     
 </body>
 </html>
