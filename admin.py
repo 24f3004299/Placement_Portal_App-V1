@@ -10,6 +10,8 @@ adm=Blueprint('admin','__name__')
 @adm.route('/admin')
 #@login_required
 def admin():
-    return render_template("admin.html")
-
+    count_comp=len(Company.query.filter_by(status="approved").all())
+    count_stu=len(Student.query.all())
+    count_drive=len(Drive.query.filter_by(status="active").all())
+    return render_template("admin.html",count_comp=count_comp,count_stu=count_stu,count_drive=count_drive)
    
