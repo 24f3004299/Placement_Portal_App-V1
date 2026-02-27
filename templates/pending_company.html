@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="search" name="company">
+    <a href={{url_for('admin.admin')}}> <button>Home</button></a>
+    <a href={{url_for('admin.admin')}}><button>Go back</button></a>
+    <hr>
+    <u><center>Pending List</center></u>
+    <table>
+        
+    <tr><th>Sl.No</th><th>Name</th><th>website</th><th>Profile</th><th>status</th><th>Blacklist</th></tr>
+    {%for elem in lis %}
+      <tr><td>{{elem["sl"]}}</td><td>{{elem["Name"]}}</td><td><a href='{{elem["website"]}}'><button>Go to website</button></a></td><td>{{elem["about"]}}</td><td><a href={{url_for('admin.update',idi=elem["sl"])}}><button>{{elem["status"]}}</button></a></td><td><button>Blacklist</button></td></tr>
+
+    {%endfor%}    
+
+    </table>
+</body>
+</html>

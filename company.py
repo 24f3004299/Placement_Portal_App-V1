@@ -15,5 +15,20 @@ def company(idi):
         return render_template("com_stat.html")
     else:
         return render_template("company.html")
+@comp.route('/create/job/post<int: idi>')
+def job(idi):
+    if request.method=="GET":
+        return render_template("Drive.html")
+    if request.method=="POST":
+        info=Drive(
+            drive_name=request.form["drive_name"],
+            company=idi,
+            skill=request.form["skill"],
+            eligibility=request.form["eligibility"],
+            experience=request.form["experience"],
+            typeof=request.form["typeof"]
 
+        )
+        database.session.add(info)
+    
    

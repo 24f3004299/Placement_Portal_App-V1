@@ -10,16 +10,18 @@
     <li>
         <ul>Total Approved Company {{count_comp}}</ul>
         <ul>Total Enrolled job seeker {{count_stu}}</ul>
-        <ul>Total Active Drive {{count_comp}}</ul>
-        <button> More Details</button>
+        <ul>Total Active Drive {{count_drive}}</ul>
+        <button> Blacklist Details</button>
+        
     </li>
     <hr>
    <center> <button>Manage Student</button>
-    <button>Manage Company</button>
+    <a href={{url_for('admin.request_company')}}><button>Manage Company</button></a>
     <button>Manage Drive</button>
     <button>History</button>
     <button>Analysis/Report</button>
     <a href={{url_for('log.logout')}}><button>Log out</button></a></center>
+    
 
 
    
