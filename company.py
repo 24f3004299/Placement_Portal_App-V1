@@ -12,11 +12,7 @@ comp=Blueprint('company','__name__')
 def company(idi):
     c=Company.query.filter_by(User_id=idi).first()
     if c.status=="pending":
-        return """"<html>
-        verification under process! check again later!
-        <a href={{url_for('log.logout')}}><button> Log out</button><'/a>
-        </html>
-        """
+        return render_template("com_stat.html")
     else:
         return render_template("company.html")
 

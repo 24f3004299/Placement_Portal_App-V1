@@ -21,6 +21,7 @@ app.register_blueprint(adm)
 database.init_app(app)
 #with app.app_context():
     #database.create_all()
+    
     #database.session.commit()
     #student_role = Role(role_name="student")
     #company_role = Role(role_name="company")

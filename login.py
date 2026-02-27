@@ -65,10 +65,13 @@ def registration(user):
         return render_template('form.html')
     elif request.method=='POST':
         c=Company.query.filter_by(User_id=user).first()
-        c.Name=request.form["Company_Name"]
-        c.about=request.form["Company_about"]
-        c.website=request.form["Company_website"]
-        c.contact=request.form["Company_contact"]
+        c.Name=request.form["Name"]
+        c.about=request.form["about"]
+        c.website=request.form["website"]
+        c.contact=request.form["contact"]
+        c.Location=request.form["Location"]
+        
+        
         database.session.add(c)
         database.session.commit()
         return redirect(url_for('company.company',idi=user))
