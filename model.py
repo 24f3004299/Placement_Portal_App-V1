@@ -57,6 +57,14 @@ class Drive(database.Model):
         database.String, unique=False)
     typeof=database.Column(
         database.String, unique=False)
+    location=database.Column(
+        database.String, unique=False)
+    role=database.Column(
+        database.String, unique=False)
+    perk=database.Column(database.String, default="Not Applicable")
+    policy=database.Column(database.String, default="Not Applicable")
+    
+
 
     eligibility = database.Column(database.String)
     experience = database.Column(database.String)

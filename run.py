@@ -9,14 +9,14 @@ from login import manager
 from login import log
 from student import stu
 from admin import adm
-from company import comp
+from company import compn
 app.config.from_object(Config)
 manager.init_app(app)
 
 
 app.register_blueprint(log)
 app.register_blueprint(stu)
-app.register_blueprint(comp)
+app.register_blueprint(compn)
 app.register_blueprint(adm)
 database.init_app(app)
 #with app.app_context():

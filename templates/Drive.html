@@ -10,15 +10,20 @@
     <button>Cancel</button>
     <hr>
     <form method="post">
+        <label for="drive_name">Title</label>
         <input name="drive_name" id="drive_name" placeholder="Give a minimal title ">
+        <label for="drive_name">Expected Skill</label>
         <input name="skill" id="skill" placeholder=" all skill expected">
+        <label for="typeof">Type:</label>
         <select name="typeof" id="typeof">
             <option value="full-time">Full-Time</option>
-            <option value="internship">Full-Time</option>
-            <option value="internship/expected PPO">Full-Time</option>
+            <option value="internship">internship</option>
+            <option value="internship/expected PPO">Intern/PPO on performance</option>/option>
 
         </select>
+        <label for="eligibility">Eligibility:-</label>
         <input type="text" name="eligibility">
+        <label name="experience">Experience:-</label>
         <select type="text" name="experience">
             <option value="Fresher">all incl Freshers too</option>
             <option value="junior">1-3 yrs</option>
@@ -27,11 +32,16 @@
 
 
         </select>
-        <input type="text" placeholder="town,state/remote/hybrid">
-        <input type="text" id="role" name="role" placeholder="job role/related keywords" > 
-        <input type="text" name="description" id="description">
-        <input type="text" name="responsibility" id="responsibility">
+        <label for="location">Location/Mode:</label>
+        <input name="location" id="location" type="text" placeholder="town,state/remote/hybrid">
+        <label for="role">JOb-Role:</label>
+        <textarea type="text" id="role" name="role" placeholder=" Enter all job role or Job Description/related keywords/responsibility/" ></textarea>
+        
+        <label for="perk">Perks(if any/ for trainee/ interns etc...)</label>
         <input type="text" name="perk" id="perk" placeholder="If any/ for interns / if applicable ">
+        <label for="policy">Comapny Policy/T&C/(if any):</label>
+        <textarea type="text" id="policy" name="policy" placeholder=" iF applicable , don't fill otherwise" >  </textarea>      
+
         <input type="submit" value="Create">
 
 
