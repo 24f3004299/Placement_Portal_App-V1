@@ -6,8 +6,8 @@
     <title>Document</title>
 </head>
 <body>
-    <button>Back</button>
-    <button>Cancel</button>
+    <button onclick="history.back()">Back</button>
+   
     <hr>
     <form method="post">
         <label for="drive_name">Title</label>
@@ -42,10 +42,11 @@
         <label for="policy">Comapny Policy/T&C/(if any):</label>
         <textarea type="text" id="policy" name="policy" placeholder=" iF applicable , don't fill otherwise" >  </textarea>      
 
-        <input type="submit" value="Create">
+        <input type="submit" value="Create"> <button onclick="location.reload()">Reset</button>
 
 
 
     </form>
+    
 </body>
 </html>

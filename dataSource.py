@@ -1,0 +1,57 @@
+from model import Role, Drive, User, Company, Student, database
+def Drive_All(idi):
+    Drives=Drive.query.filter_by(company=idi).all()
+    All=[]
+    History=[]
+    Active=[]
+    Rejected=[]
+    Pending=[]
+    
+
+    for job in Drives:
+        each={
+            "drive_name": job.drive_name,
+            "company_idi":idi,
+            "company_name":Company.query.filter_by(User_id=idi).first().Name,
+            "skill":job.skill,
+            "eligibility":job.eligibility,
+            "experience":job.experience,
+            "typeof":job.typeof,
+            "location":job.location,
+            "role":job.role,
+            "perk":job.perk,
+            "policy":job.policy,
+            "status":job.status
+            }
+        All.append(each)
+        if each["status"]=="active":
+            Active.append(each)
+        elif each["status"]=="closed":
+            History.append(each)
+        elif each["status"]=="pending":
+            Pending.append(each)
+        elif each["status"]=="rejected":
+            Rejected.append(each)
+    print([All,Rejected,Pending,History,Active])
+    return [All,Rejected,Pending,History,Active]
+def all(idi):
+    return Drive_All(idi)[0]
+    
+def rejected(idi):
+    return Drive_All(idi)[1]
+   # print(Drive_All(idi)[1])
+def pending(idi):
+    return Drive_All(idi)[2]
+    
+def history(idi):
+    return Drive_All(idi)[3]
+
+def active(idi):
+    return Drive_All(idi)[4]
+
+
+    
+
+
+
+
