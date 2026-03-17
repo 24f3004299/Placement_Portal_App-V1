@@ -11,10 +11,13 @@ from dataSource import *
 #@login_required
 def company(idi):
     c=Company.query.filter_by(User_id=idi).first()
-    if c.status=="pending":
-        return render_template("com_stat.html")
-    else:
+    if c.status=="approved":
         return render_template("company.html",idi=idi)
+        
+    else:
+        stat=Company.query.filter_by(User_id=idi).first().status
+        return render_template("com_stat.html",stat=stat)
+        
 @compn.route('/create/job/post<int:idi>', methods=['GET','POST'])
 def job(idi):
     if request.method=="GET":
@@ -50,16 +53,16 @@ def manage(idi):
            print(jobs)
            return render_template("allDrivec.html",jobs=jobs)
        elif request.form["filter"]=="Active":
-           jobs=active(idi)
+           jobs=Drive_All(idi)[-1]
            return render_template("allDrivec.html",jobs=jobs)
        elif request.form["filter"]=="History":
-           jobs=history(idi)
+           jobs=Drive_All(idi)[-2]
            return render_template("allDrivec.html",jobs=jobs)
        elif request.form["filter"]=="Pending":
-           jobs=pending(idi)
+           jobs=Drive_All(idi)[2]
            return render_template("allDrivec.html",jobs=jobs)
        elif request.form["filter"]=="Rejected":
-           jobs=rejected(idi)
+           jobs=Drive_All(idi)[1]
            return render_template("allDrivec.html",jobs=jobs)
        else:
            return "I dont know!"

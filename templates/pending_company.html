@@ -10,14 +10,28 @@
     <a href={{url_for('admin.admin')}}> <button>Home</button></a>
     <a href={{url_for('admin.admin')}}><button>Go back</button></a>
     <hr>
-    <u><center>Pending List</center></u>
+    <form method="Post">
+        
+       <div class="set"> <select name="filter" id="filter" placeholder="enter"> 
+            <option name="All" disabled selected >Filter</option>
+            <option name="All" >All</option>
+            <option name="Approved">Approved </option>
+            <option name="Pending">Pending</option>
+            <option name="Rejected">Rejected</option>
+
+        </select>
+        <input type="submit" value="GO"></div>
+    </form>
+    <u><center>List of <strong> {{state}} </strong> comapnies</center></u>
     <table>
         
-    <tr><th>Sl.No</th><th>Name</th><th>website</th><th>Profile</th><th>status</th><th>Blacklist</th></tr>
-    {%for elem in lis %}
-      <tr><td>{{elem["sl"]}}</td><td>{{elem["Name"]}}</td><td><a href='{{elem["website"]}}'><button>Go to website</button></a></td><td>{{elem["about"]}}</td><td><a href={{url_for('admin.update',idi=elem["sl"])}}><button>{{elem["status"]}}</button></a></td><td><button>Blacklist</button></td></tr>
+        <tr><th>Sl.No</th><th>Name</th><th>website</th><th>Profile</th><th>status</th><th>Blacklist</th></tr>
+    {%for elem in lisi %}
+           <tr><td>{{elem["sl"]}}</td><td>{{elem["Name"]}}</td><td><a href='{{elem["website"]}}'><button>Go to website</button></a></td><td>{{elem["about"]}}</td><td><a href={{url_for('admin.update',idi=elem["sl"])}}><button>{{elem["status"]}}</button></a></td><td><button>Blacklist</button></td></tr>
+        {%else%}
+           <stong> Not Found</strong>
 
-    {%endfor%}    
+       {%endfor%}    
 
     </table>
 </body>

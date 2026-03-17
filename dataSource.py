@@ -50,7 +50,36 @@ def active(idi):
     return Drive_All(idi)[4]
 
 
-    
+#Get companies with status and shortlist by status    
+def get_company():
+        c=Company.query.all()
+
+        lis=[]
+        pending_companies=[]
+        rejected_companies=[]
+        approved_companies=[]
+        for i in c:
+            info={
+                "sl":i.company_id,
+                "Name":i.Name,
+                "Website":i.website,
+                "status":i.status,
+                "Location":i.Location,
+                "about":i.about,
+                "user":i.User_id
+            }
+            lis.append(info)
+            if info["status"]=="pending":
+                pending_companies.append(info)
+            if info["status"]=="rejected":
+                rejected_companies.append(info)
+            if info["status"]=="approved":
+                approved_companies.append(info)
+            return {"all":lis,"pending":pending_companies,"approved":approved_companies,"rejected":rejected_companies}
+        
+        
+
+
 
 
 
