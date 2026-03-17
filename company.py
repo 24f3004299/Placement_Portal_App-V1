@@ -73,5 +73,6 @@ def manage(idi):
    
    
    pass
+# view active drive 
 
    

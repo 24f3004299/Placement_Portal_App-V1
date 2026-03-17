@@ -58,6 +58,7 @@ def get_company():
         pending_companies=[]
         rejected_companies=[]
         approved_companies=[]
+
         for i in c:
             info={
                 "sl":i.company_id,
@@ -77,10 +78,37 @@ def get_company():
                 approved_companies.append(info)
             return {"all":lis,"pending":pending_companies,"approved":approved_companies,"rejected":rejected_companies}
         
-        
+#Drive for each
+#   
+def get_drive_all():
+        c=Drive.query.all()
 
-
-
-
-
-
+        lisd=[]
+        pending_drives=[]
+        closed_drives=[]
+        active_drives=[]
+        for job in c:
+            each={
+            "drive_name": job.drive_name,
+            "company_idi":idi,
+            "company_name":Company.query.filter_by(User_id=idi).first().Name,
+            "skill":job.skill,
+            "eligibility":job.eligibility,
+            "experience":job.experience,
+            "typeof":job.typeof,
+            "location":job.location,
+            "role":job.role,
+            "perk":job.perk,
+            "policy":job.policy,
+            "status":job.status
+            }
+            lisd.append(each)
+            if each["status"]=="active":
+                active_drives.append(each)
+            elif each["status"]=="closed":
+                closed_drives.append(each)
+                 
+            elif each["status"]=="pending":
+                pending_drives.append(each)
+            return {"all":active_drives, "closed": }
+           

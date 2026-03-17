@@ -62,3 +62,36 @@ def update(idi):
         c.status="approved"
         database.session.commit()
         return redirect(url_for('admin.request_company'))
+    
+# admin and Drives 
+@adm.route('/drives/request',methods=['GET','POST'])
+#@login_required
+def request_drive():
+    if request.method=="GET":
+       lisi=get_drive_all()["all"]
+       return render_template("pending_company.html",lisi=lisi,state="all")
+    if request.method=="POST":
+       print("post")
+       if request.form["filter"]=="All":
+            lisi=get_company()["all"]
+            return render_template("pending_company.html",lisi=lisi,state="all")
+           
+           
+       elif request.form["filter"]=="Approved":
+           print('hit')
+           lisi=get_company()["approved"]
+           return render_template("pending_company.html",lisi=lisi,state="approved")
+           
+       elif request.form["filter"]=="Pending":
+           lisi=get_company()["pending"]
+           return render_template("pending_company.html",lisi=lisi,state="pending")
+
+       elif request.form["filter"]=="Rejected":
+           lisi=get_company()["rejected"]
+           return render_template("pending_company.html",lisi=lisi,state="rejected")
+       else:
+           return "I dont know!"
+       
+       
+
+
