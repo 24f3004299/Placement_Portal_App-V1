@@ -44,7 +44,7 @@ def manage(idi):
    if request.method=="GET":
        jobs=Drive_All(idi)[0]
        print(Drive_All(idi))
-       return render_template("allDrivec.html",jobs=jobs)
+       return render_template("allDrivec.html",jobs=jobs,idi=idi)
    if request.method=="POST":
        print("post")
        if request.form["filter"]=="All":

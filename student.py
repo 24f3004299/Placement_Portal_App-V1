@@ -5,7 +5,7 @@ from flask import Blueprint,session
 from flask_login import login_required
 stu=Blueprint('student','__name__')
 import os # for file upload system
-
+from dataSource import *
 #####
 os.makedirs("uploads",exist_ok=True)
 # concept: make a new directory, no error if already exist
@@ -39,4 +39,8 @@ def Update(idi):
        
         database.session.commit()
         return render_template("view.html",link=current.resume)
+@stu.route('/student/dash/drive/<int:idi>',methods=['GET','POST'])
+def show_active(idi):
+    active=get_drive_all()["active"]
+    return render_template('studentXjobs.html',actives=active, idi=idi)
 

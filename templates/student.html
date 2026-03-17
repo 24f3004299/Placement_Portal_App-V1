@@ -15,7 +15,7 @@
         <a href={{url_for('student.Update',idi=idi)}}><button>Edit profile</button></a>
         <button>History</button>
         <button>About us</button>
-        <button>Ongoing Job Drive</button>
+         <a href={{url_for('student.show_active',idi=idi)}}><button>Ongoing Job Drive</button></a>
         <button>Notification</button>
         <a href={{url_for('log.logout')}}><button>Log out</button></a>
     </nav>

@@ -4,8 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script defer>
+        
+        function text(){
+            document.getElementsByClassName("comp")[0].innerText+="visit page"
+
+
+        }
+       
+    </script>
 </head>
 <body>
+    <a href={{url_for('admin.admin')}}><button> back</button></a>
+    <form method="post">
      <div class="set"> <select name="filter" id="filter" placeholder="enter"> 
             <option name="All" disabled selected >Filter</option>
             <option name="All" >All</option>
@@ -16,6 +27,22 @@
         </select>
         <input type="submit" value="GO"></div>
     </form>
-    
+   <u> <center> List of <mark>{{state}}</mark>  Drives</center>
+     <table>
+        <th><td>Drive Name</td><td>Posted By</td> <td>Details</td><td>Status</td><td>control</td><td>No of Applicant</td><td>View applicants</td><td>result</td></th>
+        {%for job in lisi%}
+        {%if job["status"]=="pending"%}
+        <tr><td>{{job["drive_name"]}}</td><td><button class="comp">{{job["company_name"]}}</button></td><td><button>Job description</button></td><td><a href={{url_for('admin.update_drive',idid=job["drive_id"])}}><button>approve</button></a></td><td><button>Blacklist</button></td><td>NA</td></tr>
+        {%elif job["status"]=="active"%}
+        <tr><td>{{job["drive_name"]}}</td><td><button>Job description</button></td><td><button>{{job["status"]}}</button></td><td><button>mark as Completed</button></td><td>{{appli}}</td></tr>
+        {%elif job["status"]=="closed"%}
+        <tr><td>{{job["drive_name"]}}</td><td><button>Job description</button></td><td><button>{{job["status"]}}</button></td><td><button>View result</button></td><td>{{appli}}</td></tr>
+        {%endif%}
+
+        {%else%}
+             <center> Not Found</center>
+        
+        {%endfor%}
+    </table>
 </body>
 </html>

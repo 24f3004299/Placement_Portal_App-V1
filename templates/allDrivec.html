@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <button>Go back</button>
+    <a href={{url_for('company.company', idi=idi)}}><button>Go back</button></a>
     <form method="Post">
         
         <select name="filter" id="filter" placeholder="enter"> 
@@ -21,9 +21,16 @@
         <input type="submit" value="GO">
     </form>
     <table>
-        <th><tr>Drive Name</tr> <tr>Details</tr> <tr>Status</tr></tr>
+        <th><td>Drive Name</td> <td>Details</td> <td>Status</td><td>Update</td><td>No of applicant</td><td></td></th>
         {%for job in jobs%}
-            <tr> <td>{{job["drive_name"]}}</td><td><button>Job description</button></td><td>{{job["status"]}}</td></tr>
+            {%if job["status"]=="active"%}
+            <tr> <td>{{job["drive_name"]}}</td><td><button>Job description</button></td><td><button>Mark as completed</button></td><td><button>Evaluate</button></td></tr>
+            {%elif job["status"]=="closed"%}
+            <tr> <td>{{job["drive_name"]}}</td><td><button>Job description</button></td><td><div>clompeted</div></td><td><button>View/Update result</button></td></tr>
+
+            {%else%}
+            <tr> <td>{{job["drive_name"]}}</td><td><button>Job description</button></td><td>{{job["status"]}}</td><td>NA</td><td>NA</td><td>NA</td></tr>
+            {%endif%}
         {%else%}
              <center> Not Found</center>
         {%endfor%}
