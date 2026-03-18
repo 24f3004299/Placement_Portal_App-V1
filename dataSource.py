@@ -101,16 +101,42 @@ def get_drive_all():
             "role":job.role,
             "perk":job.perk,
             "policy":job.policy,
-            "status":job.status
+            "status":job.status,
+            "company_status":Company.query.filter_by(User_id=job.company).first().status,
             }
-            lisd.append(each)
-            if each["status"]=="active":
-                active_drives.append(each)
-            elif each["status"]=="closed":
-                closed_drives.append(each)
+            if each["company_status"]=="approved":
+                lisd.append(each)
+                if each["status"]=="active":
+                    active_drives.append(each)
+                elif each["status"]=="closed":
+                    closed_drives.append(each)
                  
-            elif each["status"]=="pending":
-                pending_drives.append(each)
+                elif each["status"]=="pending":
+                    pending_drives.append(each)
             
         return {"all":lisd, "closed":closed_drives, "pending":pending_drives, "active":active_drives }
+def getDriveByid(idi):
+     job=Drive.query.get(idi)
+     each={
+            "drive_id":job.drive_id,
+            "drive_name": job.drive_name,
+            "company_name":Company.query.filter_by(User_id=job.company).first().Name,
+            "skill":job.skill,
+            "eligibility":job.eligibility,
+            "experience":job.experience,
+            "typeof":job.typeof,
+            "location":job.location,
+            "role":job.role,
+            "perk":job.perk,
+            "policy":job.policy,
+            "status":job.status,
+            "company_status":Company.query.filter_by(User_id=job.company).first().status,
+            }
+     if each["status"]=="approved":
+         return each
+     else:
+         return {}
+
+
+            
            

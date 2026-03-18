@@ -13,9 +13,9 @@
         Ongoing Drives
     </center>
     <table>
-        <th><td>Title</td><td>Posted_By</td><td>Details</td><td>Total Applicants</td><td>Apply Now</td></th>
+        <tr><th>Job Title</th><th>Posted By</th><th>View</th></tr>
         {%for job in actives%}
-           <tr><td>{{job["drive_name"]}}</td><td><button class="comp">{{job["company_name"]}}</button></td><td><button>Job description</button></td><td>{{appli}}</td><td>Apply</td></tr>
+           <tr><td>{{job["drive_name"]}}</td><td>{{job["company_name"]}}</td><td><a href={{url_for('student.Applicant',idi=idi,di=job["drive_id"])}}><button>View Details </button></a></td></tr>
         {%else%}
            <center> Not Found</center>
         {%endfor%}

@@ -44,3 +44,18 @@ def show_active(idi):
     active=get_drive_all()["active"]
     return render_template('studentXjobs.html',actives=active, idi=idi)
 
+@stu.route('/apply/NOW/<int:idi>/<int:di>',methods=["GET","POST"])
+def Applicant(idi,di):
+    if request.method=="GET":
+        app=Application.query.filter(drive_id =di,student_id=idi).all()
+        if app:
+            about=
+            return render_template("Appllicant.html",idi=idi, di=di, message="already applied , Go to 'My application' page ")
+        else:
+
+@stu.route('/Apply/BUtton/Doit/<int:idi>/<int:di>')
+def apply(idi,di):
+    new_Applicant=Application(drive_id=di, student_id=idi)
+    database.session.add(new_Applicant)
+    database.session.commit()
+    return render_template("application_end_point.html",idi=idi)
