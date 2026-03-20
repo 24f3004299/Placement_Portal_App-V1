@@ -110,9 +110,21 @@ def update_drive(idid):
 
     pass
 # view student
+#@adm.route('/drive/to/applicants/<di=di>')
+@adm.route('/drive/to/company/<int:di>')
+def view_drive_com(di):
+    if request.method=="GET":
+        #app=Application.query.filter(Application.drive_id==di,Application.student_id==idi).all()
+        about=all_incl_drive(di)
+        return render_template("Appllicant.html",about=about, di=di,user="admin")
 #update student
 # search 
 #view applicants
+@adm.route('/reject/<int:di>')
+def rejectD(di):
+    Drive.query.get(di).status="Rejected"
+    database.session.commit()
+    return redirect(url_for('admin.request_drive'))
 
 
 

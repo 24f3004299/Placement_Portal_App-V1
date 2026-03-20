@@ -1,5 +1,6 @@
 #from app import app
 from flask import render_template, url_for, request, redirect
+from datetime import datetime
 from model import *
 from flask import Blueprint,session
 from flask_login import login_required
@@ -33,7 +34,9 @@ def job(idi):
             location=request.form["location"],
             role=request.form["role"],
             perk=request.form["perk"],
-            policy=request.form["policy"]
+            policy=request.form["policy"],
+            deadline=datetime.strptime(request.form["deadline"], "%Y-%m-%d"),
+            salary=request.form["salary"]
 
         )
         database.session.add(info)
@@ -74,5 +77,12 @@ def manage(idi):
    
    pass
 # view active drive 
-
-   
+# shows applicants
+@compn.route("/check/update/<int:di>")
+def driveUpdate(di):
+    All_stu=ApplicationDetails(di)
+    company=Drive.query.get(di).company
+    return render_template('showapplicant.html',all=All_stu,company=company)
+@compn.route('/update/status/student/<int:sid>/<int:aid>',methods=['GET','POST'])
+def update(aid,sid):
+    return render_template("view.html")

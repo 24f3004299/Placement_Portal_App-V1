@@ -22,25 +22,30 @@
 
         </select>
         <label for="eligibility">Eligibility:-</label>
-        <input type="text" name="eligibility">
+        <input type="text" name="eligibility" required>
         <label name="experience">Experience:-</label>
-        <select type="text" name="experience">
+        <select type="text" name="experience" required>
             <option value="Fresher">all incl Freshers too</option>
             <option value="junior">1-3 yrs</option>
             <option value="mid">3-7 yrs</option>
             <option value="mid">7+ yrs</option>
+         </select>
 
-
-        </select>
+        <label for="salary"> Expected salary:</label>
+        <input type="text" name="salary" id ="salary" required>
+       
         <label for="location">Location/Mode:</label>
-        <input name="location" id="location" type="text" placeholder="town,state/remote/hybrid">
+        <input name="location" id="location" type="text" placeholder="town,state/remote/hybrid" required>
         <label for="role">JOb-Role:</label>
-        <textarea type="text" id="role" name="role" placeholder=" Enter all job role or Job Description/related keywords/responsibility/" ></textarea>
+        <textarea type="text" id="role" name="role" placeholder=" Enter all job role or Job Description/related keywords/responsibility/" required></textarea>
         
         <label for="perk">Perks(if any/ for trainee/ interns etc...)</label>
         <input type="text" name="perk" id="perk" placeholder="If any/ for interns / if applicable ">
         <label for="policy">Comapny Policy/T&C/(if any):</label>
         <textarea type="text" id="policy" name="policy" placeholder=" iF applicable , don't fill otherwise" >  </textarea>      
+        <label for="date">Open till:</label>
+        <input type="date" name="deadline" id="deadline">
+
 
         <input type="submit" value="Create"> <button onclick="location.reload()">Reset</button>
 

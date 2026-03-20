@@ -8,8 +8,8 @@ database.init_app(app)
 
 
 with app.app_context():
-    #database.drop_all()
-    #database.session.commit()
+    database.drop_all()
+    database.session.commit()
     
     database.create_all()
     

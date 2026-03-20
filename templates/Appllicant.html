@@ -7,18 +7,46 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="card" style="width: 18rem;">
+    <div class="card" style="width:80%; margin:10%;">
   <div class="card-body">
     <h5 class="card-title">About</h5>
     <h6 class="card-subtitle mb-2 text-body-secondary"></h6>
     <p class="card-text">
+   <div>
+    
+    <center><u>Drive:{{about["drive_id"]}}</u></center>
+    <h3>Job Title :{{about["drive_name"]}}</h3>
+    <h4>Company : {{about["company_name"]}}</h4>
+  <ul>
+    <li><strong>Skills</strong> : {{about["skill"]}}</li>
+    <li><strong>Job Description</strong> : {{about["role"]}}</li>
+    <li><strong>Salary</strong> : {{about["salary"]}}</li>
+    
+    <li><strong>Location</strong> : {{about["location"]}}</li>
+    <li><strong>Type</strong> : {{about["typeof"]}}</li>
+    <li><strong>Apply on or before</strong> : {{about["deadline"]}}</li>
+    </ul>
+  
 
-    Drive 
+    </div>
 
-    </p>
-    <a href={{url_for("student.Applicant",idi=idi,di=di)}} class="card-link"><button class="btn btn-success">Apply</button></a>
-    <a href={{url_for("student.show_active",idi=idi,di=di)}} class="card-link"><button class="btn btn-info">Go back</button></a>
+{%if user=="student"%}   
+ </p>
+
+    {%if button=="applied"%}
+    <a href={{url_for("student.Applicant",idi=idi,di=di)}} class="card-link"><button class="btn btn-success" disabled>Apply</button></a>
+    <a href={{url_for("student.show_active",idi=idi,di=di)}} class="card-link"><button class="btn btn-info">Go back</button></a><br>
+    <div style="color:red;font-size:medium;">{{message}}</div>
+    {%else%}
+    <a href={{url_for("student.apply",idi=idi,di=di)}} class="card-link"><button class="btn btn-success">Apply</button></a>
+    <a href={{url_for("student.show_active",idi=idi,di=di)}} class="card-link"><button class="btn btn-info">Go back</button></a><br>
+    {%endif%}
+  {%elif user!="student"%}   
+  <a href={{url_for("admin.request_drive")}} class="card-link"><button class="btn btn-info">Go back</button></a><br>
+  {%endif%}
+
   </div>
-</div>
+</div><
+
 </body>
 </html>

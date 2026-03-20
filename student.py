@@ -10,7 +10,7 @@ from dataSource import *
 os.makedirs("uploads",exist_ok=True)
 # concept: make a new directory, no error if already exist
 
-from datetime import datetime
+from datetime import datetime,date
 
 #@login_required
 @stu.route('/student/<int:idi>',methods=['GET','POST'])
@@ -36,6 +36,9 @@ def Update(idi):
 
         current.Higher_qualification=request.form["qly"]
         current.contact=request.form["cont"]
+        current.Department=request.form["dept"]
+        current.student_Name=request.form["name"]
+
        
         database.session.commit()
         return render_template("view.html",link=current.resume)
@@ -47,15 +50,21 @@ def show_active(idi):
 @stu.route('/apply/NOW/<int:idi>/<int:di>',methods=["GET","POST"])
 def Applicant(idi,di):
     if request.method=="GET":
-        app=Application.query.filter(drive_id =di,student_id=idi).all()
+
+        app=Application.query.filter(Application.drive_id==di,Application.student_id==idi).all()
+        about=getDriveByid(di)
+        #print(about)
         if app:
-            about=
-            return render_template("Appllicant.html",idi=idi, di=di, message="already applied , Go to 'My application' page ")
+            
+            return render_template("Appllicant.html",about=about,idi=idi, di=di,button="applied", message="already applied , Go to 'My application' page ",user="student")
         else:
+            return render_template("Appllicant.html",about=about,idi=idi, di=di,button="", message="",user="student")
+            
 
 @stu.route('/Apply/BUtton/Doit/<int:idi>/<int:di>')
 def apply(idi,di):
-    new_Applicant=Application(drive_id=di, student_id=idi)
+    new_Applicant=Application(drive_id=di, student_id=idi,applied_on=date.today())
     database.session.add(new_Applicant)
     database.session.commit()
     return render_template("application_end_point.html",idi=idi)
+#button For my applications

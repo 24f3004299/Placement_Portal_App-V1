@@ -28,8 +28,10 @@ class User(database.Model, UserMixin):
 class Student(database.Model):
     __tablename__ = 'Student'
     student_id = database.Column(database.Integer, primary_key=True)
+    student_Name=database.Column(database.String, unique=False) 
     User_id = database.Column(database.Integer, database.ForeignKey(User.user_id), unique=False)
     Nationality= database.Column(database.String, unique=False)
+    Department= database.Column(database.String, unique=False)
     state=database.Column(database.String, unique=False)
     location= database.Column(database.String, unique=False)
     Dob= database.Column(database.Date, unique=False)   
@@ -64,8 +66,7 @@ class Drive(database.Model):
     perk=database.Column(database.String, default="Not Applicable")
     policy=database.Column(database.String, default="Not Applicable")
     
-
-
+    deadline=database.Column(database.Date, unique=False)   
     eligibility = database.Column(database.String)
     experience = database.Column(database.String)
     application = database.Relationship(
@@ -73,6 +74,7 @@ class Drive(database.Model):
     company = database.Column(
         database.Integer, database.ForeignKey(Company.company_id), unique=False)
     status= database.Column(database.String, default="pending")
+    salary=database.Column(database.String)
 class Application(database.Model):
     __tablename__ = 'Application'
     application_id = database.Column(database.Integer, primary_key=True)
@@ -80,4 +82,6 @@ class Application(database.Model):
         database.Integer, database.ForeignKey(Drive.drive_id), unique=False)
     student_id = database.Column(
         database.Integer, database.ForeignKey(Student.student_id), unique=False)
+    
     status= database.Column(database.String, default="applied")
+    applied_on=database.Column(database.Date, unique=False)   

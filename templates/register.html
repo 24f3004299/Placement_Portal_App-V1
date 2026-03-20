@@ -4,27 +4,79 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Form</title>
+    <style>
+      .container {
+  display:flex;
+  justify-content:center; /* Centers horizontally */
+  align-items:center;     /* Centers vertically */
+  height:100vh;           /* Ensures the container takes up full height */
+}
+.centered-div {
+  width: 50%; /* Must have a defined width */
+  margin-left: auto;
+  margin-right: auto;
+}
+    </style>
+    <script defer>
+      function check(){
+        pass=document.querySelector(".pass").value
+        cpass=document.querySelector(".conp").value
+        console.log(pass)
+
+        
+        if (pass!==cpass){
+         
+          document.querySelector(".err").innerText="did not matched!"
+          document.querySelector(".create").disabled=true
+
+
+        }
+        else{
+          document.querySelector(".create").disabled=true
+          document.querySelector(".err").innerText=""
+
+        }
+
+        
+        document.querySelector(".create").disabled=false
+      }
+      var elem=document.querySelector("select").value()
+      console.log(elem)
+      if (elem!=="student"||elem!="company"){
+         document.querySelector(".create").disabled=true
+
+
+
+      }
+      else{
+         document.querySelector(".create").disabled=false
+      }
+    </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   </head>
   <body>
+    <div  class="card" style="width: 18rem">
      <form method="post">
       <label for="email">Email:-</label>
-      <input name="email" id="email" type="email" placeholder="Enter a valid email"/>
+      <input name="email" id="email" type="email" placeholder="Enter a valid email" required/><br>
       
       <label for="pass">Create Password</label>
-      <input name="pass" id="pass" type="password" placeholder=" create strong password"/>
+      <input class="pass" name="pass" id="pass" type="password" placeholder=" create strong password" required><br>
       <label for="Cpass">Confirm Password</label>
-      <input name="Cpass" id="Cpass" type="password" placeholder=" confirm password"/>
+      <input class="conp" name="Cpass" id="Cpass" type="password" placeholder=" confirm password" onkeyup="check()" required/><br>
+      <div class="err" style="font-size:small; color:red"></div>
       <label for="Name">Acc_Type</label>
-      <select name="Type" id="Type">
-        User Type:
+      <select class="type" name="Type" id="Type" required>
+        <option value="acc type" disabled selected>Account Type</option>
         <option value="student">Student</option>
         <option value="company">Company/organization/Recruiter</option>
-      </select>
-      <button>create account</button>
+      </select><br>
+      <button class="create">create account</button>
       
 
-    </form><hr>
+    </form><hr> </div>
     <h6><u><center>Already have as account?<br> <a href={{url_for('log.login')}}> <button>Log in </button></a></center></u></h6>
+   
     
   </body>
 

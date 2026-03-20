@@ -29,16 +29,16 @@
     </form>
    <u> <center> List of <mark>{{state}}</mark>  Drives</center>
      <table>
-        <th><td>Drive Name</td><td>Posted By</td> <td>Details</td><td>Status</td><td>control</td><td>No of Applicant</td><td>View applicants</td><td>result</td></th>
+        <tr><th>Drive Name</th><th>Details</th><th>Status</th><th>control</th><th>No of Applicant</th><th>View applicants</th<th>result</th></tr>
         {%for job in lisi%}
         {%if job["status"]=="pending"%}
-        <tr><td>{{job["drive_name"]}}</td><td><button class="comp">{{job["company_name"]}}</button></td><td><button>Job description</button></td><td><a href={{url_for('admin.update_drive',idid=job["drive_id"])}}><button>approve</button></a></td><td><button>Blacklist</button></td><td>NA</td></tr>
+        <tr><td>{{job["drive_name"]}}</td><td><a href={{url_for('admin.view_drive_com',di=job["drive_id"])}}><button class="comp">View</button></a></td><td><a href={{url_for('admin.update_drive',idid=job["drive_id"])}}><button>approve</button></a></td><td><a href={{url_for('admin.rejectD',di=job["drive_id"])}}><button>Blacklist</button></a></td><td>NA</td></tr>
         {%elif job["status"]=="active"%}
-        <tr><td>{{job["drive_name"]}}</td><td><button>Job description</button></td><td><button>{{job["status"]}}</button></td><td><button>mark as Completed</button></td><td>{{appli}}</td></tr>
+        <tr><td>{{job["drive_name"]}}</td><td><a href={{url_for('admin.view_drive_com',di=job["drive_id"])}}><button>View</button></a></td><td><button>{{job["status"]}}</button></td><td><button>mark as Completed</button></td><td>show</td></tr>
         {%elif job["status"]=="closed"%}
-        <tr><td>{{job["drive_name"]}}</td><td><button>Job description</button></td><td><button>{{job["status"]}}</button></td><td><button>View result</button></td><td>{{appli}}</td></tr>
+        <tr><td>{{job["drive_name"]}}</td><td><a href={{url_for('admin.view_drive_com',di=job["drive_id"])}}><button>View</button></a></td><td><button>{{job["status"]}}</button></td><td><button>View result</button></td><td>{{appli}}</td></tr>
         {%endif%}
-
+        
         {%else%}
              <center> Not Found</center>
         

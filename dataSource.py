@@ -1,4 +1,5 @@
-from model import Role, Drive, User, Company, Student, database
+from model import Role, Drive, User, Company, Student, database, Application
+from datetime import datetime
 def Drive_All(idi):
     Drives=Drive.query.filter_by(company=idi).all()
     All=[]
@@ -10,6 +11,7 @@ def Drive_All(idi):
 
     for job in Drives:
         each={
+            "drive_id":job.drive_id,
             "drive_name": job.drive_name,
             "company_idi":idi,
             "company_name":Company.query.filter_by(User_id=idi).first().Name,
@@ -21,7 +23,9 @@ def Drive_All(idi):
             "role":job.role,
             "perk":job.perk,
             "policy":job.policy,
-            "status":job.status
+            "status":job.status, 
+            "deadline":job.deadline,
+            "salary":job.salary
             }
         All.append(each)
         if each["status"]=="active":
@@ -103,7 +107,8 @@ def get_drive_all():
             "policy":job.policy,
             "status":job.status,
             "company_status":Company.query.filter_by(User_id=job.company).first().status,
-            }
+            "deadline":job.deadline,
+            "salary":job.salary}
             if each["company_status"]=="approved":
                 lisd.append(each)
                 if each["status"]=="active":
@@ -117,7 +122,9 @@ def get_drive_all():
         return {"all":lisd, "closed":closed_drives, "pending":pending_drives, "active":active_drives }
 def getDriveByid(idi):
      job=Drive.query.get(idi)
-     each={
+
+     each={ "drive_id":"DRIVE"+str(job.drive_id),
+            "salary":job.salary,
             "drive_id":job.drive_id,
             "drive_name": job.drive_name,
             "company_name":Company.query.filter_by(User_id=job.company).first().Name,
@@ -131,12 +138,63 @@ def getDriveByid(idi):
             "policy":job.policy,
             "status":job.status,
             "company_status":Company.query.filter_by(User_id=job.company).first().status,
+            
+            "deadline":job.deadline,
+            "salary":job.salary
             }
-     if each["status"]=="approved":
+     
+     if each["status"]=="active":
          return each
      else:
          return {}
 
 
+ # company show aplicant
+ # algo:-info drive id
+ #
+def ApplicationDetails(idi):
+    applications=Application.query.filter_by(drive_id=idi).all()
+    students=[]
+    for applicant in applications:
+        stu=Student.query.filter_by(User_id=applicant.student_id).first()
+        data={
+            "cid":Drive.query.get(idi).company,
+            "rono":stu.student_id,
+            "student-id":applicant.student_id,
+            "student_Name":Student.query.filter_by(User_id=applicant.student_id).first().student_Name,
+            "Department/Major":stu.Department,
+            "Resume":stu.resume,
+            "Higher_qualification":stu.Higher_qualification,
+            "Job Title":Drive.query.filter_by(drive_id=applicant.drive_id).first().drive_name,
+            "Job Drive":"DRIVE"+str(applicant.drive_id),
+            "Company":Company.query.filter_by(User_id=Drive.query.filter_by(drive_id=idi).first().company).first().Name,
+         
+        }
+        students.append(data)
+    return students
+#def viewStudent(idi):
+def all_incl_drive(idi):
+    job=Drive.query.get(idi)
+
+    each={ "drive_id":"DRIVE"+str(job.drive_id),
+            "salary":job.salary,
+            "drive_id":job.drive_id,
+            "drive_name": job.drive_name,
+            "company_name":Company.query.filter_by(User_id=job.company).first().Name,
+            "skill":job.skill,
+            "eligibility":job.eligibility,
+            "experience":job.experience,
+            "typeof":job.typeof,
+            "location":job.location,
+            "role":job.role,
+            "perk":job.perk,
+            "policy":job.policy,
+            "status":job.status,
+            "company_status":Company.query.filter_by(User_id=job.company).first().status,
             
-           
+            "deadline":job.deadline,
+            "salary":job.salary
+            }
+    return each
+     
+
