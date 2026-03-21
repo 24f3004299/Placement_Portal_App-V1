@@ -23,7 +23,8 @@
   </button>
   <center><div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-        <a class="nav-item nav-link active" href={{url_for('admin.request_company')}}><button>Manage Company</button></a>
+    <a class="nav-item nav-link active" href={{url_for('admin.manageStu')}}><button>Manage Students</button></a>
+    <a class="nav-item nav-link active" href={{url_for('admin.request_company')}}><button>Manage Company</button></a>
     <a class="nav-item nav-link active" href={{url_for('admin.request_drive')}}><button>Manage Drive</button></a>
     <a class="nav-item nav-link active"><button >History</button></a>
     <a class="nav-item nav-link active"><button>Analysis/Report</button></a>
@@ -49,6 +50,7 @@
         
     </ul>
     </div></center>
+    
    
      
 {% endblock %}

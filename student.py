@@ -68,3 +68,7 @@ def apply(idi,di):
     database.session.commit()
     return render_template("application_end_point.html",idi=idi)
 #button For my applications
+@stu.route('/view history/<int:idi>')
+def History(idi):
+    app=byStu(idi)
+    return render_template("history.html",tot=app,idi=idi)

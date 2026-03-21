@@ -220,3 +220,28 @@ def getInfoDrive(idi):
         
     }
     return info
+def getStudent():
+    All=Student.query.all()
+    c=[]
+    for a in All:
+        b={
+            "ID":a.student_id,
+            "Name":a.student_Name,
+            "contact":a.contact
+            
+        }
+        c.append(b)
+    return(c)
+def byStu(idi):
+    app=Application.query.filter_by(student_id=idi).all()
+    tot=[]
+    for a in app:
+        each={
+            
+            "Drive_name":"Drive"+str(a.drive_id),
+            "Job Title":Drive.query.get(a.drive_id).drive_name,
+            "Company":Company.query.filter_by(User_id=Drive.query.get(a.drive_id).company).first().Name,
+            "status": a.status
+        }
+        tot.append(each)
+    return tot

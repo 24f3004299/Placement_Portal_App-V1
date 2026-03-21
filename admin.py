@@ -140,6 +140,16 @@ def driveSee(di):
     #company=Drive.query.get(di).company
     return render_template('showapplicant.html',all=All_stu,user="admin")
 
-
+#manage student
+@adm.route('/admin/manages/student')
+def manageStu():
+    stu=getStudent()
+    return render_template('manage_stu.html',all=stu)
+@adm.route('/del/<int:idi>')
+def delStu(idi):
+    stu=Student.query.get(idi)
+    database.session.delete(User.query.filter_by(User_id=stu.User_id).first)
+    database.session.commit()
+    return render_template('manage_stu.html',all=stu)
 
 
