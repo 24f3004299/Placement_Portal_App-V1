@@ -56,7 +56,7 @@ def Applicant(idi,di):
         #print(about)
         if app:
             
-            return render_template("Appllicant.html",about=about,idi=idi, di=di,button="applied", message="already applied , Go to 'My application' page ",user="student")
+            return render_template("Appllicant.html",about=about,idi=idi, di=di,button="applied", message="already applied , Go to History' page to see updates ",user="student")
         else:
             return render_template("Appllicant.html",about=about,idi=idi, di=di,button="", message="",user="student")
             
