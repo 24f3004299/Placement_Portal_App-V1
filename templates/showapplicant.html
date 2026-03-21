@@ -1,3 +1,4 @@
+{%extends "root.html"%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+{%block header%}
+   {{super()}}
+ 
+{%endblock%}
 <body>
+{%block body%}
     {%if user=="company"%}
     <a href={{url_for("company.manage", idi=company)}}><button>Back</button></a>
      <a href={{url_for("company.company", idi=company)}}><button>Home</button></a>
@@ -18,14 +24,16 @@
     NO data found!
     {%endfor%}
     {%elif user=="admin"%}
+    <a href={{url_for('admin.request_drive')}}><button>Back</button></a>
+    <a href={{url_for("admin.admin", idi=company)}}><button>Home</button></a>
     </table>
     
    
-    <center>Update and view applicants</center>
+    <center> view applicants</center>
     <table>
     <tr><th>Student_id</th><th>Name</th><th>Evaluate Result</th></tr>
     {%for a in all%}
-    <tr><td>{{a["rono"]}}</td><td>{{a["student_Name"]}}</td><td> <a herf={{url_for('admin.apply_view',id=a["applicationId"])}}><button>View data</button></a></td></tr>
+    <tr><td>{{a["rono"]}}</td><td>{{a["student_Name"]}}</td><td> <a href={{url_for('admin.applyView',appli=a["applicationId"])}}><button>View data</button></a></td></tr>
     {%else%}
     NO data found!
     {%endfor%}
@@ -33,6 +41,11 @@
     </table>
     {%endif%}
 
+{%endblock%}
+{%block footer%}
+{{super()}}
 
+{%endblock%}
 </body>
+
 </html>

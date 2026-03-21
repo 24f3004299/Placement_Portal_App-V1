@@ -126,10 +126,19 @@ def rejectD(di):
     database.session.commit()
     return redirect(url_for('admin.request_drive'))
 # view application by students for a drive
-@adm.route('/view/applicant/application/<int:id>',methods=["GET","POST"])
-def apply_view(id):
-    info=getInfoDrive(id)
+@adm.route('/view/applicant/application/<int:appli>',methods=["GET","POST"])
+def applyView(appli):
+    print("hit")
+
+    info=getInfoDrive(appli)
+    print(info)
+    
     return render_template('view.html',user="admin",info=info)
+@adm.route('/view/applicants/<int:di>',methods=['GET','POST'])
+def driveSee(di):
+    All_stu=ApplicationDetails(di)
+    #company=Drive.query.get(di).company
+    return render_template('showapplicant.html',all=All_stu,user="admin")
 
 
 

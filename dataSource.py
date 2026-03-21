@@ -180,7 +180,8 @@ def ApplicationDetails(idi):
 def all_incl_drive(idi):
     job=Drive.query.get(idi)
 
-    each={ "drive_id":"DRIVE"+str(job.drive_id),
+    each={"no":len(Application.query.filter_by(drive_id=job.drive_id).all()),
+        "drive_id":"DRIVE"+str(job.drive_id),
             "salary":job.salary,
             "drive_id":job.drive_id,
             "drive_name": job.drive_name,

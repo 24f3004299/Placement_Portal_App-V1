@@ -46,9 +46,9 @@
         {%if job["status"]=="pending"%}
         <tbody>
 
-        <tr scope="row"><td>{{job["drive_name"]}}</td><td><a href={{url_for('admin.view_drive_com',di=job["drive_id"])}}><button class="comp">View</button></a></td><td><a href={{url_for('admin.update_drive',idid=job["drive_id"])}}><button>approve</button></a></td><td><a href={{url_for('admin.rejectD',di=job["drive_id"])}}><button>Blacklist</button></a></td><td>NA</td></tr>
+        <tr scope="row"><td>{{job["drive_name"]}}</td><td><a href={{url_for('admin.view_drive_com',di=job["drive_id"])}}><button class="comp">View</button></a></td><td><a href={{url_for('admin.update_drive',idid=job["drive_id"])}}><button>approve</button></a></td><td><a href={{url_for('admin.rejectD',di=job["drive_id"])}}><button>Blacklist</button></a></td><td>NA</td><td>NA</td><td>NA</td></tr>
         {%elif job["status"]=="active"%}
-        <tr scope="row"><td>{{job["drive_name"]}}</td><td><a href={{url_for('admin.view_drive_com',di=job["drive_id"])}}><button>View</button></a></td><td><button>{{job["status"]}}</button></td><td><button>mark as Completed</button></td><td>show</td></tr>
+        <tr scope="row"><td>{{job["drive_name"]}}</td><td><a href={{url_for('admin.view_drive_com',di=job["drive_id"])}}><button>View</button></a></td><td><button>{{job["status"]}}</button></td><td><button>mark as Completed</button></td><td>{{job["no"]}}</td><td><a href={{url_for('admin.driveSee',di=job["drive_id"])}}><button>Visit</button></a></td></tr>
         {%elif job["status"]=="closed"%}
         <tr scope="row"><td>{{job["drive_name"]}}</td><td><a href={{url_for('admin.view_drive_com',di=job["drive_id"])}}><button>View</button></a></td><td><button>{{job["status"]}}</button></td><td><button>View result</button></td><td>{{appli}}</td></tr>
         {%endif%}
