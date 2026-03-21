@@ -1,3 +1,4 @@
+{%extends "root.html"%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,9 +9,10 @@
 
 
 <body>
-    <header>
-        
-    </header>
+    {%block header%}
+     {{super()}}
+    {%endblock%}
+    {%block nav%}
     <nav>
         <center><input type="search" placeholder="search skill match/ experience match/ location match/ job type match"></center><br>
         <a href={{url_for('student.Update',idi=idi)}}><button>Edit profile</button></a>
@@ -20,11 +22,15 @@
         <button>Notification</button>
         
     </nav>
+    {%endblock%}
+    {%block body%}
+    
     <main>
 
     </main>
-    <footer>
-
-    </footer>
+    {%endblock%}
+    {%block footer%}
+    {{super()}}
+    {%endblock%}
 </body>
 </html>
