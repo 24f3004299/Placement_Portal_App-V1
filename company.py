@@ -82,7 +82,16 @@ def manage(idi):
 def driveUpdate(di):
     All_stu=ApplicationDetails(di)
     company=Drive.query.get(di).company
-    return render_template('showapplicant.html',all=All_stu,company=company)
-@compn.route('/update/status/student/<int:sid>/<int:aid>',methods=['GET','POST'])
-def update(aid,sid):
-    return render_template("view.html")
+    return render_template('showapplicant.html',all=All_stu,company=company,user="company")
+@compn.route('/update/status/student/<int:aid>',methods=['GET','POST'])
+def update(aid):
+    if request.method=='GET':
+        info=getInfoDrive(aid)
+        return render_template("view.html",user="company",info=info)
+    if request.method=="POST":
+        Application.query.get(aid).status=request.form["status"]
+        #print(request.form["status"])
+        database.session.commit()
+           
+        return redirect(url_for('company.update',aid=aid))
+

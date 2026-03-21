@@ -125,6 +125,12 @@ def rejectD(di):
     Drive.query.get(di).status="Rejected"
     database.session.commit()
     return redirect(url_for('admin.request_drive'))
+# view application by students for a drive
+@adm.route('/view/applicant/application/<int:id>',methods=["GET","POST"])
+def apply_view(id):
+    info=getInfoDrive(id)
+    return render_template('view.html',user="admin",info=info)
+
 
 
 

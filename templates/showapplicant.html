@@ -7,28 +7,31 @@
 </head>
 <body>
     {%if user=="company"%}
-    <button>Back</button>
+    <a href={{url_for("company.manage", idi=company)}}><button>Back</button></a>
      <a href={{url_for("company.company", idi=company)}}><button>Home</button></a>
     <center>Update and view applicants</center>
     <table>
     <tr><th>Student_id</th><th>Name</th><th>Evaluate Result</th></tr>
     {%for a in all%}
-    <tr><td>{{a["rono"]}}</td><td>{{a["student_Name"]}}</td><td><button>View and Update</button></td></tr>
+    <tr><td>{{a["rono"]}}</td><td>{{a["student_Name"]}}</td><td><a href={{url_for('company.update',aid=a["applicationId"])}}><button>View and Update</button></a></td></tr>
     {%else%}
     NO data found!
     {%endfor%}
+    {%elif user=="admin"%}
     </table>
-    {%elif user="admin"%}
-    {%end if%}
+    
+   
     <center>Update and view applicants</center>
     <table>
     <tr><th>Student_id</th><th>Name</th><th>Evaluate Result</th></tr>
     {%for a in all%}
-    <tr><td>{{a["rono"]}}</td><td>{{a["student_Name"]}}</td><td><button>View data</button></td></tr>
+    <tr><td>{{a["rono"]}}</td><td>{{a["student_Name"]}}</td><td> <a herf={{url_for('admin.apply_view',id=a["applicationId"])}}><button>View data</button></a></td></tr>
     {%else%}
     NO data found!
     {%endfor%}
+
     </table>
+    {%endif%}
 
 
 </body>

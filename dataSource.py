@@ -10,7 +10,7 @@ def Drive_All(idi):
     
 
     for job in Drives:
-        each={
+        each={"no":len(Application.query.filter_by(drive_id=job.drive_id).all()),
             "drive_id":job.drive_id,
             "drive_name": job.drive_name,
             "company_idi":idi,
@@ -94,6 +94,7 @@ def get_drive_all():
         active_drives=[]
         for job in c:
             each={
+            "no":len(Application.query.filter_by(drive_id=job.drive_id).all()),
             "drive_id":job.drive_id,
             "drive_name": job.drive_name,
             "company_name":Company.query.filter_by(User_id=job.company).first().Name,
@@ -123,7 +124,8 @@ def get_drive_all():
 def getDriveByid(idi):
      job=Drive.query.get(idi)
 
-     each={ "drive_id":"DRIVE"+str(job.drive_id),
+     each={ "no":len(Application.query.filter_by(drive_id=idi).all()),
+            "drive_id":"DRIVE"+str(job.drive_id),
             "salary":job.salary,
             "drive_id":job.drive_id,
             "drive_name": job.drive_name,
@@ -158,6 +160,7 @@ def ApplicationDetails(idi):
     for applicant in applications:
         stu=Student.query.filter_by(User_id=applicant.student_id).first()
         data={
+            "applicationId":applicant.application_id,
             "cid":Drive.query.get(idi).company,
             "rono":stu.student_id,
             "student-id":applicant.student_id,
@@ -168,6 +171,7 @@ def ApplicationDetails(idi):
             "Job Title":Drive.query.filter_by(drive_id=applicant.drive_id).first().drive_name,
             "Job Drive":"DRIVE"+str(applicant.drive_id),
             "Company":Company.query.filter_by(User_id=Drive.query.filter_by(drive_id=idi).first().company).first().Name,
+            
          
         }
         students.append(data)
@@ -196,5 +200,22 @@ def all_incl_drive(idi):
             "salary":job.salary
             }
     return each
-     
-
+#application particiapants
+def getInfoDrive(idi):
+    appli=Application.query.get(idi)
+    student=Student.query.filter_by(User_id=appli.student_id).first()
+    drive=Drive.query.filter_by(drive_id=appli.drive_id).first()
+    info={
+        "student_Name":student.student_Name,
+        "Drive Name":"DRIVE"+" "+str(drive.drive_id),
+        "drive_id":drive.drive_id,
+        "Job Title":drive.drive_name,
+        "resume":student.resume,
+        "Department":student.Department,
+        "Higher Qualification":student.Higher_qualification,
+        "company Name":Company.query.filter_by(User_id=drive.company).first().Name,
+        "status":appli.status,
+        "applied on":appli.applied_on
+        
+    }
+    return info
