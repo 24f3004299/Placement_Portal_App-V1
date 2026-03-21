@@ -1,16 +1,36 @@
+
+{% extends "root.html" %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+     .all{
+            border-margin :10px;
+        }
+</style>
 </head>
+<div class="all">
 <body>
-    <a href={{url_for('company.company', idi=idi)}}><button>Go back</button></a>
-    <form method="Post">
+ 
+    
+    {% block header %}
+    {{ super() }}
+     
+   
+    {% endblock %}
+   
+    {% block nav %}
+<nav style="padding-left:20%;padding-bottom:10px">
+    <center><ul class="nav">
+    <li class="nav-item"><a href={{url_for('company.company', idi=idi)}}><button class="btn btn-primary btn-sm" style="margin-right:20px">Go back</button></a></li>
+   
+    
+     <li class="nav-item"><form method="post" style="margin-left:20px">
         
-        <select name="filter" id="filter" placeholder="enter"> 
+       <select name="filter" id="filter" placeholder="enter"> 
             <option name="All" disabled selected >Filter</option>
             <option name="All" >All</option>
             <option name="History">History</option>
@@ -19,26 +39,36 @@
             <option name="Rejected">Rejected</option>
 
         </select>
-        <input type="submit" value="GO" class="table table-hover">
-    </form>
+        <input type="submit" class="btn btn-primary btn-sm" value="GO"></li>
+    </form></li></center>
+</ul>
+
+</nav>
+
+     {% endblock %}
+    {% block body %}
+    <main>
     <table class="table table-hover">
         <thead>
         <tr><th scope="col">Drive Name</th> <th scope="col">Details</th><th scope="col">Control</th><th scope="col">No of applicant</th></tr></thead>
             {%for job in jobs%}
             {%if job["status"]=="active"%}
             <tbody>
-            <tr scope="row"> <td>{{job["drive_name"]}}</td><td><a href={{url_for('company.driveUpdate',di=job["drive_id"])}}><button>View Details</button></a></td><td><button>Mark as completed</button></td><td>{{job["no"]}}</td></tr>
+            <tr scope="row"> <td>{{job["drive_name"]}}</td><td><a href={{url_for('company.driveUpdate',di=job["drive_id"])}}><button type="button" class="btn btn-warning">View Details</button></a></td><td><button class="btn btn-success">Mark as completed</button></td><td>{{job["no"]}}</td></tr>
             {%elif job["status"]=="closed"%}
-            <tr scope="row"> <td>{{job["drive_name"]}}</td><td><button>View Details</button></td><td><div>clompeted</div></td></tr>
+            <tr scope="row"> <td>{{job["drive_name"]}}</td><td><button type="button" class="btn btn-warning">View Details</button></td><td><div>clompeted</div></td></tr>
 
             {%else%}
-            <tr scope="row"> <td>{{job["drive_name"]}}</td><td>status:{{job["status"]}}</td><td>NA</td><td>NA</td></tr>
+            <tr scope="row"> <td>{{job["drive_name"]}}</td><td><button type="button" class="btn btn-dark">status:{{job["status"]}}</button></td><td><button type="button" class="btn btn-dark">NA</button></td><td><button type="button" class="btn btn-dark">NA</button></td></tr>
             {%endif%}
         {%else%}
              <center> Not Found</center>
         {%endfor%}
         </tbody>
     </table>
+    </main>
     
 </body>
+{% endblock %}
+</div>
 </html>

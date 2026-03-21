@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,12 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="static\decorate.js" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
+    
+    <header>
+<div style="padding:5px" class="d-flex justify-content-between">
+  <div style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size:xx-large;">DriveIn</div>
    <div> 
-    <a href={{url_for('log.Create')}}><button> Create Account</button></a>
-   </div>
-    <div>
+    <a href={{url_for('log.Create')}}><button class="btn btn-outline-success"> Create Account</button></a>
+   </div><div></div>
+</div><hr>
+   </div><hr>
+   </header>
         {% with message = get_flashed_messages() %}
         {% if message %}
           {%for msg in message%}
@@ -18,14 +26,24 @@
           {%endfor%}
         {%endif%}
         {%endwith%}
+<center><div class="card" style="width: 20rem;">
         <form method="post">
+        <div class="form-group">
+           <div class="card-body">
             <label for="email"> Email:-</label>
-            <input type="email" placeholder="Enter Email here" name="email_id" id="email_id" required>
+            <input type="email" placeholder="Enter Email here" name="email_id" id="email_id" required><br>
             <label for="password"> Password:-</label>
-            <input type="password" placeholder="Enter password here" name="pass" class="pass" required>
+            <input type="password" placeholder="Enter password here" name="pass" class="pass" required><br>
            
-            <input type="submit" value="Log In"> 
+        </div>
+            <center><input type="submit" value="Log In"> </center>
+        </div>
         </form>
+    </div>
+    </div>
+        <footer>
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"> <div class="col-md-4 d-flex align-items-center"> <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1" aria-label="Bootstrap"> <svg class="bi" width="30" height="24" aria-hidden="true"><use xlink:href="#bootstrap"></use></svg> </a> <span class="mb-3 mb-md-0 text-body-secondary">© 2025 Company, Inc</span> </div> <ul class="nav col-md-4 justify-content-end list-unstyled d-flex"> <li class="ms-3"><a class="text-body-secondary" href="#" aria-label="Instagram"><svg class="bi" width="24" height="24" aria-hidden="true"><use xlink:href="#instagram"></use></svg></a></li> <li class="ms-3"><a class="text-body-secondary" href="#" aria-label="Facebook"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg></a></li> </ul> </footer>
+</footer>
 
         
     </div>

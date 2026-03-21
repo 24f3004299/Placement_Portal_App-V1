@@ -1,3 +1,4 @@
+{%extends "root.html"%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,10 +16,16 @@
     </script>
 </head>
 <body>
-    <a href={{url_for('admin.admin')}}><button> back</button></a>
+<div class="container d-flex align-items-center justify-content-center min-vh-100">
+{%block header%}
+{{ super() }}
+     
+{% endblock %}
+{%block nav%}
+ <a class="nav-item nav-link active" href={{url_for('admin.admin')}}><button> Back</button></a>
     <form method="post">
      <div class="set"> <select name="filter" id="filter" placeholder="enter"> 
-            <option name="All" disabled selected >Filter</option>
+            <option name="All" disabled selected >Filter By Status</option>
             <option name="All" >All</option>
             <option name="Pending">Pending </option>
             <option name="Ongoing">Ongoing</option>
@@ -27,22 +34,37 @@
         </select>
         <input type="submit" value="GO"></div>
     </form>
-   <u> <center> List of <mark>{{state}}</mark>  Drives</center>
-     <table>
-        <tr><th>Drive Name</th><th>Details</th><th>Status</th><th>control</th><th>No of Applicant</th><th>View applicants</th<th>result</th></tr>
+{%endblock%}
+{%block body%}
+
+   
+   <u> <center> List of <strong>{{state}}</strong>  Drives</center>
+     <table class="table table-hover">
+        <thead>
+        <tr><th  scope="col">Drive Name</th><th scope="col">Details</th><th scope="col" >Status</th><th scope="col">control</th><th scope="col">No of Applicant</th><th scope="col">View applicants</th><th scope="col">result</th></tr></thead>
         {%for job in lisi%}
         {%if job["status"]=="pending"%}
-        <tr><td>{{job["drive_name"]}}</td><td><a href={{url_for('admin.view_drive_com',di=job["drive_id"])}}><button class="comp">View</button></a></td><td><a href={{url_for('admin.update_drive',idid=job["drive_id"])}}><button>approve</button></a></td><td><a href={{url_for('admin.rejectD',di=job["drive_id"])}}><button>Blacklist</button></a></td><td>NA</td></tr>
+        <tbody>
+
+        <tr scope="row"><td>{{job["drive_name"]}}</td><td><a href={{url_for('admin.view_drive_com',di=job["drive_id"])}}><button class="comp">View</button></a></td><td><a href={{url_for('admin.update_drive',idid=job["drive_id"])}}><button>approve</button></a></td><td><a href={{url_for('admin.rejectD',di=job["drive_id"])}}><button>Blacklist</button></a></td><td>NA</td></tr>
         {%elif job["status"]=="active"%}
-        <tr><td>{{job["drive_name"]}}</td><td><a href={{url_for('admin.view_drive_com',di=job["drive_id"])}}><button>View</button></a></td><td><button>{{job["status"]}}</button></td><td><button>mark as Completed</button></td><td>show</td></tr>
+        <tr scope="row"><td>{{job["drive_name"]}}</td><td><a href={{url_for('admin.view_drive_com',di=job["drive_id"])}}><button>View</button></a></td><td><button>{{job["status"]}}</button></td><td><button>mark as Completed</button></td><td>show</td></tr>
         {%elif job["status"]=="closed"%}
-        <tr><td>{{job["drive_name"]}}</td><td><a href={{url_for('admin.view_drive_com',di=job["drive_id"])}}><button>View</button></a></td><td><button>{{job["status"]}}</button></td><td><button>View result</button></td><td>{{appli}}</td></tr>
+        <tr scope="row"><td>{{job["drive_name"]}}</td><td><a href={{url_for('admin.view_drive_com',di=job["drive_id"])}}><button>View</button></a></td><td><button>{{job["status"]}}</button></td><td><button>View result</button></td><td>{{appli}}</td></tr>
         {%endif%}
         
         {%else%}
-             <center> Not Found</center>
+             <div style="font-size:xx-large; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; color:Red"><center> Not Found</center></div>
         
         {%endfor%}
+        </tbody>
     </table>
+{%endblock%}
+    {% block footer %}
+    {{ super() }}
+     
+   
+    {% endblock %}
 </body>
+</div>
 </html>
